@@ -10,7 +10,9 @@ library
   ghc-options:     -Wall
   other-modules:   
                    Syllables,
-                   PoemWords
+                   PoemDicts,
+                   Poems,
+                   MakingLines
 
 executable TenderBytes
   hs-source-dirs:  src
@@ -19,5 +21,7 @@ executable TenderBytes
   ghc-options:     -Wall
   other-modules:   
                    Syllables,
-                   PoemWords
+                   PoemDicts,
+                   Poems,
+                   MakingLines
 

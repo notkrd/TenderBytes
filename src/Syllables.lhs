@@ -1,5 +1,10 @@
 "The apparition of these faces in the crowd; petals on a wet, black bough" -Ezra Pound
 
+"Furu ike ya
+kawazu tobikomu
+mizu no oto"
+-Matsuo Basho
+
 This code is disgusting and should be stopped
 
 \begin{code}
@@ -27,13 +32,13 @@ isConsonant c
     
 \end{code}
 
-This is the cobbled together pile of shit that tries to count syllables.
+What follows is the cobbled together pile of shit that tries to count syllables.
 
 It can't handle abbreviations or contractions
 
 It has problems with things that end with "es", for example "toves"
 
-It has problems with certain adverbs, for example "barely" or "curiously," . 
+It has problems with certain adverbs, for example "barely" or "curiously." 
 
 Other suffixes also seem to present certain complications, for example "mastered." The issue is that sometimes the suffix creates an additional syllable, 
 as in "blasted," but other times it doesn't.
@@ -111,8 +116,8 @@ syllableTests = do
     putStrLn "I sigh the lack of many a thing I sought,"
     putStrLn (show (syllableCount "I sigh the lack of many a thing I sought,"))
     print (map toLower "I sigh the lack of many a thing I sought,")
-    putStrLn "And with old woes new wail my dear time’s waste:"
-    putStrLn (show (syllableCount "And with old woes new wail my dear time’s waste:"))
+    putStrLn "And with old woes new wail my dear time\'s waste:"
+    putStrLn (show (syllableCount "And with old woes new wail my dear time\'s waste:"))
     putStrLn "\n"
     putStrLn "And now, the monad speaks"
 \end{code}
