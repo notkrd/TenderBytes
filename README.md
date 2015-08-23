@@ -2,29 +2,12 @@
 
 TENDER BUTTONS
 
-  Objects · Food · Rooms
-
 Gertrude Stein
 
 1914
 
 
-
-
-CONTENTS
-
-
-  OBJECTS
-
-  FOOD
-
-  ROOMS
-
-
-
-
 OBJECTS
-
 
 A CARAFE, THAT IS A BLIND GLASS.
 
