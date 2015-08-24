@@ -3,7 +3,6 @@
 
 module Main where
 import Syllables
-import PoemUnits
 
 
 main::IO()

@@ -1,30 +1,3 @@
-"Singing the way they did, in the old time, we can sometimes see through the tissues
-and tracings the genetic process has laid down between us and them. The tendrils can
-suggest a hand; or a specific color — the yellow of the tulip, for instance — will 
-flash for a moment in such a way that after it has been withdrawn we can be sure that 
-there was no imagining, no auto-suggestion here, but at the same time it becomes as 
-useless as all subtracted memories. It has brought certainty without heat or light. 
-Yet still in the old time, in the faraway summer evenings, they must have had a word 
-for this, or known that we would someday need one, and wished to help."
-
--John Ashberry,  "Wherever it is, Wherever You Are"
-
-
->module PoemDicts where
->import PoemUnits
-
-What happens when you have lots of words? You've got a dictionary! Dictionaries should
-be of words, hopefully - particularly each element should be a PoemWord.
-
->type Dictionary a = [a]
-
-
-For some reason, at some point, we might want to take a dictionary and get the list of
-words inside it.
-
->wordsInDictionary :: (PoemUnit a) => Dictionary a -> [String]
->wordsInDictionary dict = map (write_it) dict
-
 Sleeping with the Dictionary
 BY HARRYETTE MULLEN
 
@@ -46,3 +19,26 @@ block of knowledge might render a dense lexicon of lucid hallucinations. Beside 
 bed, a pad lies open to record the meandering of migratory words. In the rapid eye 
 movement of the poet’s night vision, this dictum can be decoded, like the secret 
 acrostic of a lover’s name.
+
+
+
+>module PoemDicts where
+>import PoemUnits
+
+What happens when you have lots of words? You've got a dictionary! Dictionaries should
+be of words, hopefully - particularly each element should be a PoemWord.
+
+>type Dictionary a = [a]
+
+For some reason, at some point, we might want to take a dictionary and get the list of
+words inside it.
+
+>wordsInDictionary :: (PoemUnit a) => Dictionary a -> [String]
+>wordsInDictionary dict = map (write_it) dict
+
+We might want to remove words from a dictionary:
+
+>dictWithout :: Dictionary a -> Int -> Dictionary a
+>dictWithout dict n
+>    | n `elem` [0..((length dict) - 1)] = let the_pieces = splitAt n dict in (fst the_pieces) ++ (tail (snd the_pieces))
+>    | otherwise = []
