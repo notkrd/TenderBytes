@@ -54,11 +54,13 @@ All we need for a PoemWord to be a word is to have a way to turn it into a list 
 that the underlying word might not be the same as the "show" function: since "show" might display other data, beyond the final
 word that might end up in the poem. 
 
-We also want to know when two words are the same, and should have some way of ordering them.
+We also want to know when two words are the same, and should have some way of ordering them. Plus, we should have a sort of failure word.
 
 \begin{code}
 class (Eq a, Ord a) => PoemUnit a where
     write_it :: a -> String
+    just_word :: String -> a
+    cellar_door :: a
 \end{code}
 
 \section{Instances of PoemWord}
@@ -67,13 +69,14 @@ Here, we'll define various representations of words:
 
 A string like "word" should probably be a PoemUnit.
 
-But haskell doesn't let you declare lists as instances for some unknown technical evil reason so we have to be stupid.
+Note that this requires some FlexibleInstances thing. Hopefully this doesn't create any black holes or summon Satan.
 
 \begin{code}
-newtype JustWord = JustWord {the_word :: String} deriving (Eq, Ord)
-
-instance PoemUnit JustWord where
-    write_it = (\wrd -> the_word wrd)
+{-# LANGUAGE FlexibleInstances #-}
+instance PoemUnit String where
+    write_it = id
+    just_word = id
+    cellar_door = "cellar-door"
 \end{code}
 
 The next representation of a word we will consider is one where we attach another word to it as a label. Now twice as many
@@ -82,10 +85,12 @@ string at all. It could be the text of Anna Karenina, or of the Philadelphia pho
 parts of speech though.
 
 \begin{code}
-data LabeledWord = LabeledWord {just_word :: String, the_label :: String} deriving (Eq, Ord)
+data LabeledWord = LabeledWord {the_word :: String, the_label :: String} deriving (Eq, Ord)
 
 instance PoemUnit LabeledWord where
-    write_it = (\wrd -> just_word wrd)
+    write_it = (\wrd -> the_word wrd)
+    just_word = (\str -> LabeledWord str "")
+    cellar_door = LabeledWord "cellar-door" "cellar-door"
 \end{code}
 
 \section{Functions on PoemWords}

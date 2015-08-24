@@ -1,18 +1,24 @@
 name:           TenderBytes
 version:        0.1
-cabal-version:  >=1.2
+cabal-version:  >= 1.12
 build-type:     Simple
 author:         Kavi
 
 library
   hs-source-dirs:  src
-  build-depends:   base >= 4
+  build-depends:   
+                   base >= 4,
+                   random >=1.0 && <1.1
   ghc-options:     -Wall
   other-modules:   
                    Syllables,
                    PoemDicts,
                    Poems,
-                   MakingLines
+                   MakingLines,
+                   PoemDictionaries
+  extensions:      
+                   FlexibleInstances, 
+                   FunctionalDependencies
 
 executable TenderBytes
   hs-source-dirs:  src
@@ -23,5 +29,6 @@ executable TenderBytes
                    Syllables,
                    PoemDicts,
                    Poems,
-                   MakingLines
+                   MakingLines,
+                   PoemDictionaries
 
