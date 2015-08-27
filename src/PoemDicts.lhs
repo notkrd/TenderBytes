@@ -34,7 +34,7 @@ For some reason, at some point, we might want to take a dictionary and get the l
 words inside it.
 
 >wordsInDictionary :: (PoemUnit a) => Dictionary a -> [String]
->wordsInDictionary dict = map (write_it) dict
+>wordsInDictionary dict = map (writeIt) dict
 
 We might want to remove words from a dictionary:
 

@@ -58,8 +58,8 @@ We also want to know when two words are the same, and should have some way of or
 
 \begin{code}
 class (Eq a, Ord a) => PoemUnit a where
-    write_it :: a -> String
-    just_word :: String -> a
+    writeIt :: a -> String
+    justWord :: String -> a
     cellar_door :: a
 \end{code}
 
@@ -74,10 +74,19 @@ Note that this requires some FlexibleInstances thing. Hopefully this doesn't cre
 \begin{code}
 {-# LANGUAGE FlexibleInstances #-}
 instance PoemUnit String where
-    write_it = id
-    just_word = id
+    writeIt = id
+    justWord = id
     cellar_door = "cellar-door"
+    
+newtype JustWord = JustWord {just_a_word :: String} deriving (Eq, Ord)
+instance PoemUnit JustWord where
+    writeIt = \jwrd -> just_a_word jwrd
+    justWord = \wrd -> JustWord wrd
+    cellar_door = JustWord "cellar-door"
 \end{code}
+
+The second variation is utterly redundant, but is there in case you want to try getting around using FlexibleInstances. You'll
+also have to change other stuff if you do though.
 
 The next representation of a word we will consider is one where we attach another word to it as a label. Now twice as many
 words for your literary pleasure, at the same low low price! A labeled could consist of a part of speech, a synonym, or really any
@@ -88,9 +97,12 @@ parts of speech though.
 data LabeledWord = LabeledWord {the_word :: String, the_label :: String} deriving (Eq, Ord)
 
 instance PoemUnit LabeledWord where
-    write_it = (\wrd -> the_word wrd)
-    just_word = (\str -> LabeledWord str "")
+    writeIt = (\lbl_wrd -> the_word lbl_wrd)
+    justWord = (\str -> LabeledWord str "")
     cellar_door = LabeledWord "cellar-door" "cellar-door"
+    
+relabelWord :: LabeledWord -> String -> LabeledWord
+relabelWord (LabeledWord some_word _) new_label = LabeledWord some_word new_label
 \end{code}
 
 \section{Functions on PoemWords}
@@ -100,6 +112,6 @@ Here are some things we can do with a PoemWord:
 We can count syllables: 
 
 \begin{code}
-syllablesInWord :: (PoemUnit a) => a -> Int
-syllablesInWord wrd = syllableCount (write_it wrd)
+syllablesInUnit :: (PoemUnit a) => a -> Int
+syllablesInUnit wrd = syllableCount (writeIt wrd)
 \end{code}
