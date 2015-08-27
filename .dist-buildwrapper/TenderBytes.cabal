@@ -3,6 +3,16 @@ version:        0.1
 cabal-version:  >= 1.12
 build-type:     Simple
 author:         Kavi
+data-files:     
+                src/Main.hs, 
+                src/MakingLines.lhs, 
+                src/PoemDictionaries.lhs, 
+                src/PoemDicts.lhs, 
+                src/Poems.lhs, 
+                src/PoemUnits.lhs, 
+                src/Syllables.lhs, 
+                Setup.hs, 
+                TenderBytes.cabal
 
 library
   hs-source-dirs:  src
@@ -10,25 +20,20 @@ library
                    base >= 4,
                    random >=1.0 && <1.1
   ghc-options:     -Wall
-  other-modules:   
-                   Syllables,
-                   PoemDicts,
-                   Poems,
-                   MakingLines,
-                   PoemDictionaries
   extensions:      
+                   FlexibleContexts, 
                    FlexibleInstances, 
                    FunctionalDependencies
 
 executable TenderBytes
   hs-source-dirs:  src
   main-is:         Main.hs
-  build-depends:   base >= 4
+  build-depends:   
+                   base >= 4,
+                   random >=1.0 && <1.1
   ghc-options:     -Wall
-  other-modules:   
-                   Syllables,
-                   PoemDicts,
-                   Poems,
-                   MakingLines,
-                   PoemDictionaries
+  extensions:      
+                   FlexibleContexts, 
+                   FlexibleInstances, 
+                   FunctionalDependencies
 

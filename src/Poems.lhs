@@ -62,5 +62,5 @@ We can get the words in it. We can write it
 
 \begin{code}
 writePoem :: (PoemUnit a) => (Poem a) -> [String]
-writePoem some_poem = map write_it (the_words some_poem)
+writePoem some_poem = map writeIt (the_words some_poem)
 \end{code}

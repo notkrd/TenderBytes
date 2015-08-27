@@ -3,9 +3,11 @@
 
 module Main where
 import Syllables
+import MakingLines
 
 
 main::IO()
 main = do
     putStrLn "And now the monad speaks"
     syllableTests
+    makingLinesTests
